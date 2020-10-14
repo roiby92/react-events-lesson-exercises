@@ -12,17 +12,21 @@ class Exercise1 extends Component {
     }
   }
   shiftImageBack = () => {
-    // this should reduce currentImg by 1
+    if (this.state.currentImg <= 0) {
+      this.setState({ currentImg: 0 })
+    }
+    this.setState({ currentImg: this.state.currentImg-1 })
   }
   shiftImageForward = () => {
-    // shiftImageForward - this should increase currentImg by 1
+    this.setState({ currentImg: this.state.currentImg+1 })
   }
 
   render() {
     return (
       <div >
-        {/* render two buttons with the classes "back" and "forward",
-           and the image at index currentImg, in an img tag */}
+        <button className="back" onClick={this.shiftImageBack}>back</button>
+        <img src={this.state.images[this.state.currentImg]} />
+        <button className="forward" onClick={this.shiftImageForward}>forward</button>
       </div>
     );
   }

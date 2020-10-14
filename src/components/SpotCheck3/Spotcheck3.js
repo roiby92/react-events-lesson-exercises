@@ -12,7 +12,13 @@ class SpotCheck3 extends Component {
         }
     }
 
-    //write a likeQuote method that increase the likes of the first quote 
+    likeQuote = () => {
+        let quotesCopy = [...this.state.quotes]
+        quotesCopy[0].likes++
+        this.setState({
+            quotes: quotesCopy
+        })
+    }
 
     render() {
         return (

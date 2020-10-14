@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Quote from './Quote';
 
-class SpotCheck3 extends Component {
+class SpotCheck4 extends Component {
 
     constructor() {
         super()
@@ -14,29 +15,26 @@ class SpotCheck3 extends Component {
     }
 
     likeQuote = quoteId => {
-
-        //Update the state accordingly based on quoteId
+        let quotesCopy = [...this.state.quotes]
+        quotesCopy.find(q => q.id === quoteId).likes++
+        this.setState({
+            quotes: quotesCopy
+        })
 
     }
 
-    //Load instances of `Quote` instead of rendering a `div`, and make sure to pass the correct props: 
-    //a quote object and the `likeQuote` method
 
     render() {
         return (
             <div>
                 {this.state.quotes.map(q => {
-                    return (
-                        <div key={q.id} className="quotes">
-                            <sup>{q.likes}</sup>
-                            <span onClick={this.likeQuote}>+</span>
-                            <span>{q.text}</span>
-                        </div>
-                    )
+                    return <div className="quotes">
+                        <Quote quote={q} likeQuote={this.likeQuote} />
+                    </div>
                 })}
             </div>
         )
     }
 }
 
-export default SpotCheck3;
+export default SpotCheck4;
